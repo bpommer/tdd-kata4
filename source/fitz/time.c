@@ -94,8 +94,11 @@ static wchar_t *
 wchar_from_utf8(const char *s)
 {
 	wchar_t *d, *r;
+	*d = L'\0';
+	*r = L'\0';
 	int c;
 	r = d = malloc((strlen(s) + 1) * sizeof(wchar_t));
+
 	if (!r)
 		return NULL;
 	while (*s) {

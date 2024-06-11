@@ -97,12 +97,22 @@ fz_new_buffer_from_copied_data(fz_context *ctx, const unsigned char *data, size_
 		fz_throw(ctx, FZ_ERROR_ARGUMENT, "no data provided");
 	b = fz_new_buffer(ctx, size);
 	b->len = size;
+	if(data == NULL) {
+		return NULL;
+	}
+
+
 	memcpy(b->data, data, size);
 	return b;
 }
 
 fz_buffer *fz_clone_buffer(fz_context *ctx, fz_buffer *buf)
 {
+	if(!buf) {
+		printf("buffer is null");
+		return NULL;
+	}
+
 	return fz_new_buffer_from_copied_data(ctx, buf ? buf->data : NULL, buf ? buf->len : 0);
 }
 

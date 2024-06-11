@@ -344,8 +344,9 @@ static int is_valid_certificate_and_password(void)
 		pdf_pkcs7_signer *signer = pkcs7_openssl_read_pfx(ctx, cert_filename, cert_password.text);
 		pdf_drop_signer(ctx, signer);
 	}
-	fz_catch(ctx)
+	fz_catch(ctx){
 		return 0;
+	}
 	return 1;
 }
 

@@ -323,13 +323,15 @@ pdf_load_cal_gray(fz_context *ctx, pdf_obj *dict)
 	float bp[3] = { 0, 0, 0 };
 	float gamma[3] = { 1, 1, 1 };
 
-	if (dict == NULL)
+	if (dict == NULL) {
 		return fz_keep_colorspace(ctx, fz_device_gray(ctx));
-
-	fz_try(ctx)
+	}
+	fz_try(ctx) {
 		pdf_load_cal_common(ctx, dict, wp, bp, gamma);
-	fz_catch(ctx)
+	}
+	fz_catch(ctx) {
 		return fz_keep_colorspace(ctx, fz_device_gray(ctx));
+	}
 	return fz_new_cal_gray_colorspace(ctx, wp, bp, gamma[0]);
 }
 

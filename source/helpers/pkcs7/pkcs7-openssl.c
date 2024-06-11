@@ -146,10 +146,12 @@ static int stream_read(BIO *b, char *buf, int size)
 	BIO_stream_data *data = (BIO_stream_data *)BIO_get_data(b);
 	size_t read = 0;
 
-	fz_try(data->ctx)
+	fz_try(data->ctx){
 		read = fz_read(data->ctx, data->stm, (unsigned char *) buf, size);
-	fz_catch(data->ctx)
+	}
+	fz_catch(data->ctx) {
 		return -1;
+	}
 
 	return (int)read;
 }

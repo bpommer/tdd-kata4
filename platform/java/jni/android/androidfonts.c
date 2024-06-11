@@ -36,8 +36,9 @@ static fz_font *load_noto(fz_context *ctx, const char *a, const char *b, const c
 		if (fz_file_exists(ctx, buf))
 			font = fz_new_font_from_file(ctx, NULL, buf, idx, 0);
 	}
-	fz_catch(ctx)
+	fz_catch(ctx) {
 		return NULL;
+	}
 	return font;
 }
 
